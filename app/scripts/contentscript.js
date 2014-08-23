@@ -54,6 +54,12 @@ function pegaBensPolitico(id){
   return html;
 }
 
+function showHideQFMenu(id){
+
+
+
+}
+
 function montaTabelaDadosPoliticos(data){
   return '<div class="qf-box">'+
           '<div class="qf-cabecalho qf-full-width qf-cf">'+
@@ -64,7 +70,7 @@ function montaTabelaDadosPoliticos(data){
               '<p class="fq-cargo-atual qf-no-margin">' + data.cargo + ' - <span class="qf-estado">' + data.estado + '</span></p>'+
               // '<p class="qf-montante-financiado qf-no-margin">' + data + '</p>'+
             '</div>'+
-            '</div><div id="qf-menu-poitico"><span id="bens">Bens</span><span id="doacoes">Doações</span><span id="propostas">Propostas</span></div>';
+            '</div><div id="qf-menu-poitico"><span class="qf-botoes-tabelas" onclick="$(\'#qf-table-\' + this.id).show().siblings().hide();" id="bens">Bens</span><span class="qf-botoes-tabelas" onclick="$(\'#qf-table-\' + this.id).show().siblings().hide();" id="doacoes">Doações</span></div>';
 
 }
 
@@ -97,7 +103,7 @@ function montaTabelaDadosPoliticos(data){
 
 function montaTabelaFinanciamento(data){
 
-  var tableHtml = '<div class="qf-body qf-full-width">'+
+  var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
             '<table class="qf-table">'+
               '<thead>'+
                 '<th class="qf qf-coluna-doador text-left">Doador</th>'+
@@ -123,7 +129,7 @@ function montaTabelaFinanciamento(data){
 
 function montaTabelaBensPoliticos(data){
 
-  var tableHtml = '<div class="qf-body qf-full-width">'+
+  var tableHtml = '<div id="qf-table-bens" class="qf-body qf-full-width">'+
             '<table class="qf-table">'+
               '<thead>'+
                 '<th class="qf qf-coluna-doador text-left">Bem</th>'+
@@ -188,9 +194,9 @@ promise.then(function(result) {
     	var currentKey = $(this).text();
     	$(this).attr('data-qf-id', nick[currentKey.toUpperCase()]);
     	Tipped.create($(this), function(){
-    		var html = pegaDadosPolitico($(this).attr('data-qf-id')) +
-                   pegaDadosFinanciamento($(this).attr('data-qf-id'), 2012) +
-                   pegaBensPolitico($(this).attr('data-qf-id'));
+    		var html = pegaDadosPolitico($(this).attr('data-qf-id')) + '<div>' +
+                   pegaDadosFinanciamento($(this).attr('data-qf-id'), 2010) +
+                   pegaBensPolitico($(this).attr('data-qf-id')) + '</div>';
                    // pegaDadosFinanciamento($(this).attr('data-qf-id'), 2010) +
                    // pegaDadosFinanciamento($(this).attr('data-qf-id'), 2008);
 
