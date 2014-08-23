@@ -1,5 +1,11 @@
 /*** Table Styles **/
 
+.qf-table-doacoes,
+.qf-table-bens{
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
 th.qf {
   color: #7A7A7A;
   border-bottom: 2px solid #9ea7af;
