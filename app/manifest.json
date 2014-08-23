@@ -1,44 +1,49 @@
 {
-    "name": "__MSG_appName__",
+    "name": "Quem Financia?",
+	"author":"Projeto Brasil",
     "version": "0.0.1",
     "manifest_version": 2,
-    "description": "__MSG_appDescription__",
+    "description": "Mostrar informações de quem financia a candidatura dos candidatos nas eleições.",
+	"options_page":"options.html",
     "icons": {
         "16": "images/icon-16.png",
-        "128": "images/icon-128.png"
+        "19": "images/icon-19.png",
+		"38": "images/icon-38.png"
     },
-    "default_locale": "en",
-    "background": {
-        "scripts": [
-            "scripts/chromereload.js",
-            "scripts/background.js"
-        ]
-    },
-  "browser_action": {
-    "default_icon": {
-      "19": "images/icon-19.png",
-      "38": "images/icon-38.png"
-    },
-    "default_title": "Quem financia?",
-    "default_popup": "popup.html"
-  },
-  "omnibox": {
-    "keyword": "Quem financia?"
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ],
-      "css": [
-        "styles/main.css"
-      ],
-      "js": [
-        "scripts/contentscript.js"
-      ],
-      "run_at": "document_end",
-      "all_frames": false
-    }
-  ]
+	"page_action": {
+		"default_icon":{
+			"16": "images/icon-16.png",
+			"19": "images/icon-19.png",
+			"38": "images/icon-38.png"
+		},
+		"default_title":"Quem financia?",
+		"default_popup":"page-action.html"
+	},
+	"permissions": [
+		"tabs",
+		"activeTab",
+		"storage"
+	],
+	"omnibox": {
+		"keyword": "Candidato"
+	},
+	"background": {
+		"scripts": ["scripts/background.js"]
+	},
+	"content_scripts": [
+		{
+		  "matches": [
+			"http://*/*",
+			"https://*/*"
+		  ],
+		  "css": [
+			"styles/main.css"
+		  ],
+		  "js": [
+			"scripts/contentscript.js"
+		  ],
+		  "run_at": "document_end",
+		  "all_frames": false
+		}
+	]
 }
