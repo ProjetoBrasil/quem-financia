@@ -40,10 +40,13 @@ promise.then(function(result) {
     $('.highlight-quem-financia').each(function() {
     	var currentKey = $(this).text();
     	$(this).attr('data-qf-id', nick[currentKey.toUpperCase()]);
+    	$(this).attr('rel', 'popover');
     });
 
     $(document).on('click', '.highlight-quem-financia', function(){
-    	console.log($(this));
+    	Tipped.create($(this), 'Some tooltip text', {
+    		behavior: 'sticky'
+    	});
     });
 
 }, function(err) {
