@@ -74,34 +74,6 @@ function montaTabelaDadosPoliticos(data){
 
 }
 
-
-//                 '<tr>'+
-//                   '<td>ELEICAO 2012 ALEXANDRE DE MORAIS MARQUES VEREADOR</td>'+
-//                   '<td>3500.00</td>'+
-//                 '</tr>'+
-//                 '<tr>'+
-//                   '<td>EVANDRO FERNANDES MEDEIROS</td>'+
-//                   '<td>3500.00</td>'+
-//                 '</tr>'+
-//                 '<tr>'+
-//                   '<td>ELEICAO 2012 COMITE FINANCEIRO MG UNICO PMDB JUIZ DE FORA</td>'+
-//                   '<td></td>'+
-//                 '</tr>'+
-//                 '<tr>'+
-//                   '<td>ELEICAO 2012 COMITE FINANCEIRO MG UNICO PMDB JUIZ DE FORA</td>'+
-//                   '<td>127.80</td>'+
-//                 '</tr>'+
-//               '</tbody>'+
-//               '<tfoot>'+
-//                 '<tr>'+
-//                   '<td colspan="2"></td>'+
-//                 '</tr>'+
-//               '</tfoot>'+
-//             '</table>'+
-//           '</div>'+
-//         '</div>';
-
-
 function formataValor(valor) {
 	if (valor)
 	{
@@ -130,7 +102,7 @@ function montaTabelaFinanciamento(data){
             '<table class="qf-table">'+
               '<thead>'+
                 '<th class="qf qf-coluna-doador text-left">Doador</th>'+
-                '<th class="qf qf-coluna-valor text-right">Montante (R$)</th>'+
+                '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
               '</thead>'+
               '<tbody>';
   $.each(data, function(){
@@ -152,7 +124,7 @@ function montaTabelaFinanciamento(data){
 
 function montaTabelaBensPoliticos(data){
 
-  var tableHtml = '<div id="qf-table-bens" class="qf-body qf-full-width">'+
+  var tableHtml = '<div id="qf-table-bens" class="qf-body qf-full-width qf-hide">'+
             '<table class="qf-table">'+
               '<thead>'+
                 '<th class="qf qf-coluna-doador text-left">Bem</th>'+
