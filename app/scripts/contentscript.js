@@ -33,14 +33,17 @@ var promise = new Promise(function(resolve, reject) {
 });
 
 promise.then(function(result) {
-  console.log(nick); 
-  $.each(nick, function(key, value) {
-      $("p").highlight(key, {caseSensitive: false, className: 'highlight-quem-financia', wordsOnly:true });
-    });
-    
-    $('.highlight-quem-financia').each(function() {  	
+  	$.each(nick, function(key, value) {
+	  $("p").highlight(key, {caseSensitive: false, className: 'highlight-quem-financia', wordsOnly:true });
+	});
+
+    $('.highlight-quem-financia').each(function() {
     	var currentKey = $(this).text();
-    	console.log('Achou: '+currentKey);
+    	$(this).attr('data-qf-id', nick[currentKey.toUpperCase()]);
+    });
+
+    $(document).on('click', '.highlight-quem-financia', function(){
+    	console.log($(this));
     });
 
 }, function(err) {
@@ -57,10 +60,10 @@ if (window == top) {
   });
 }
 
-function escape_regexp(s, ignore) {        
+function escape_regexp(s, ignore) {
   var special = ["\\", "?", ".", "+", "(", ")", "{", "}", "[", "]", "$", "^", "*"];
   special.forEach(function(re) {
-    if (!ignore || ignore.indexOf(re) < 0) 
+    if (!ignore || ignore.indexOf(re) < 0)
       s = s.replace(new RegExp("\\" + re, "g"), "\\" + re);
   });
   return s;
@@ -73,7 +76,7 @@ function check_blacklist(sites_blacklist) {
     for (var i=0; i < urls.length; i++) {
       var s = urls[i].replace(/^\s+|\s+$/g, '');
       if (s[0] == '#') {
-        // If URL starts with #, ignore it       
+        // If URL starts with #, ignore it
         continue;
       } else if (s[0] == '|') {
         // If URL starts with | assume it is a real regexp.
@@ -93,16 +96,16 @@ function check_blacklist(sites_blacklist) {
 }
 
 var findCandidato = function(options) {
-	
+
 	var blacklisted = check_blacklist(options.blockedUrls);
 
 	// Disable blacklisted sites completely
 	//if (blacklisted && !search.mode)
 	if (blacklisted)
-		return; 
-	
+		return;
+
 	// Retornar algum nome para mostrar como Tooltip no icone do Quem Financia.
-	
+
 	return "Quem financia?";
 };
 

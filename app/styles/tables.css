@@ -1,0 +1,91 @@
+/*** Table Styles **/
+
+th {
+  color: #7A7A7A;
+  border-bottom: 2px solid #9ea7af;
+  font-size: 0.9em;
+  font-weight: 100;
+  padding: 7px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+}
+
+tr:hover td {
+  font-weight: 600;
+}
+
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+
+td {
+  background: #FFFFFF;
+  padding: 5px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 0.8em;
+  border: 0;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left,
+td.text-left {
+  text-align: left;
+}
+
+th.text-center,
+td.text-center {
+  text-align: center;
+}
+
+th.text-right,
+td.text-right {
+  text-align: right;
+}
+
+.qf-coluna-doador{
+  width: 72%;
+}
+
+.qf-coluna-valor{
+  width: 28%;
+}

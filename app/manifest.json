@@ -40,8 +40,8 @@
 			"styles/main.css"
 		  ],
 		  "js": [
-      "scripts/jquery-1.9.1.js",
-      "scripts/jquery-highlight1.js",
+			"scripts/jquery-1.9.1.js",
+			"scripts/jquery-highlight1.js",
 			"scripts/contentscript.js"
 		  ],
 		  "run_at": "document_end",
