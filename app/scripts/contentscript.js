@@ -1,10 +1,10 @@
 'use strict';
 
-function pegaDadosFinanciamento(id){
+function pegaDadosFinanciamento(id, anoEleitoral){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id + '/doadores?anoEleitoral=2010',
+      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id + '/doadores?anoEleitoral=' + anoEleitoral,
       type : 'GET',
       beforeSend : function(xhr){
         xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
@@ -18,16 +18,132 @@ function pegaDadosFinanciamento(id){
   return html;
 }
 
+function pegaDadosPolitico(id){
+  var html = '';
+  var jqxhr =
+    $.ajax({
+      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id,
+      type : 'GET',
+      beforeSend : function(xhr){
+        xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
+      },
+      success : function(data) {
+        // alert( "success" );
+        html = montaTabelaDadosPoliticos(data);
+      },
+      async : false
+    });
+  return html;
+}
+
+function pegaBensPolitico(id){
+  var html = '';
+  var jqxhr =
+    $.ajax({
+      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id + '/bens/',
+      type : 'GET',
+      beforeSend : function(xhr){
+        xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
+      },
+      success : function(data) {
+        // alert( "success" );
+        html = montaTabelaBensPoliticos(data);
+      },
+      async : false
+    });
+  return html;
+}
+
+function montaTabelaDadosPoliticos(data){
+  return '<div class="qf-box">'+
+          '<div class="qf-cabecalho qf-full-width qf-cf">'+
+            // '<a href="javascript:;"" class="close-tooltip">click to close</a>'+
+            '<div class="qf-foto" style="background-image: url('+ data.foto +');">'+
+            '</div><div class="qf-infos-pessoais">'+
+              '<h1 class="qf-nome qf-no-margin qf-bold">' + data.apelido + ' - <small class="qf-partido">' + data.partido + '</small></h1>'+
+              '<p class="fq-cargo-atual qf-no-margin">' + data.cargo + ' - <span class="qf-estado">' + data.estado + '</span></p>'+
+              // '<p class="qf-montante-financiado qf-no-margin">' + data + '</p>'+
+            '</div>'+
+            '</div><div id="qf-menu-poitico"><span id="bens">Bens</span><span id="doacoes">Doações</span><span id="propostas">Propostas</span></div>';
+
+}
+
+
+//                 '<tr>'+
+//                   '<td>ELEICAO 2012 ALEXANDRE DE MORAIS MARQUES VEREADOR</td>'+
+//                   '<td>3500.00</td>'+
+//                 '</tr>'+
+//                 '<tr>'+
+//                   '<td>EVANDRO FERNANDES MEDEIROS</td>'+
+//                   '<td>3500.00</td>'+
+//                 '</tr>'+
+//                 '<tr>'+
+//                   '<td>ELEICAO 2012 COMITE FINANCEIRO MG UNICO PMDB JUIZ DE FORA</td>'+
+//                   '<td></td>'+
+//                 '</tr>'+
+//                 '<tr>'+
+//                   '<td>ELEICAO 2012 COMITE FINANCEIRO MG UNICO PMDB JUIZ DE FORA</td>'+
+//                   '<td>127.80</td>'+
+//                 '</tr>'+
+//               '</tbody>'+
+//               '<tfoot>'+
+//                 '<tr>'+
+//                   '<td colspan="2"></td>'+
+//                 '</tr>'+
+//               '</tfoot>'+
+//             '</table>'+
+//           '</div>'+
+//         '</div>';
+
 function montaTabelaFinanciamento(data){
 
-  var tableHtml = '<table><tr><th>Empresa</th><th>Montante</th></tr>';
+  var tableHtml = '<div class="qf-body qf-full-width">'+
+            '<table class="qf-table">'+
+              '<thead>'+
+                '<th class="qf qf-coluna-doador text-left">Doador</th>'+
+                '<th class="qf qf-coluna-valor text-right">Montante (R$)</th>'+
+              '</thead>'+
+              '<tbody>';
   $.each(data, function(){
-    tableHtml = tableHtml + '<tr>';
-    tableHtml = tableHtml + '<td>' + this.nome + '</td>';
-    tableHtml = tableHtml + '<td>' + this.montante + '</td>';
+    tableHtml = tableHtml + '<tr class="qf">';
+    tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';
+    tableHtml = tableHtml + '<td class="qf">' + this.montante + '</td>';
     tableHtml = tableHtml + '</tr>';
   });
-  tableHtml = tableHtml + '</table>';
+  tableHtml = tableHtml + '</tbody>'+
+              '<tfoot>'+
+                '<tr>'+
+                  '<td colspan="2"></td>'+
+                '</tr>'+
+              '</tfoot>'+
+            '</table>'+
+          '</div>';
+  return tableHtml;
+};
+
+function montaTabelaBensPoliticos(data){
+
+  var tableHtml = '<div class="qf-body qf-full-width">'+
+            '<table class="qf-table">'+
+              '<thead>'+
+                '<th class="qf qf-coluna-doador text-left">Bem</th>'+
+                '<th class="qf qf-coluna-valor text-right">Valor (R$)</th>'+
+              '</thead>'+
+              '<tbody>';
+  $.each(data, function(){
+    tableHtml = tableHtml + '<tr class="qf">';
+    tableHtml = tableHtml + '<td class="qf">' + this.bem + '</td>';
+    tableHtml = tableHtml + '<td class="qf">' + this.montante + '</td>';
+    tableHtml = tableHtml + '</tr>';
+  });
+  tableHtml = tableHtml + '</tbody>'+
+              '<tfoot>'+
+                '<tr>'+
+                  '<td colspan="2"></td>'+
+                '</tr>'+
+              '</tfoot>'+
+            '</table>'+
+          '</div>';
   return tableHtml;
 };
 
@@ -71,15 +187,37 @@ promise.then(function(result) {
     $('.highlight-quem-financia').each(function() {
     	var currentKey = $(this).text();
     	$(this).attr('data-qf-id', nick[currentKey.toUpperCase()]);
-    	$(this).attr('rel', 'popover');
     });
 
-    $(document).on('click', '.highlight-quem-financia', function(){
-    	Tipped.create($(this), pegaDadosFinanciamento($(this).attr('data-qf-id')), {
-    		behavior: 'sticky'
+    $(document).on('mouseover', '.highlight-quem-financia', function(){
+    	console.log('Buscando dados do candidato');
+
+    	Tipped.create($(this), function(){
+    		var html = pegaDadosPolitico($(this).attr('data-qf-id')) +
+                   pegaDadosFinanciamento($(this).attr('data-qf-id'), 2012) +
+                   pegaBensPolitico($(this).attr('data-qf-id'));
+                   // pegaDadosFinanciamento($(this).attr('data-qf-id'), 2010) +
+                   // pegaDadosFinanciamento($(this).attr('data-qf-id'), 2008);
+
+    		return html;
+
+    	}, {
+        close : true,
+    		// behavior: 'hide',
+    		// hideOnClickOutside: true,
+    		// hideOthers: true,
+    		padding: false,
+    		radius: false,
+    		showOn: {
+  			  element: 'mouseenter',
+  			  tooltip: 'mouseenter'
+  			}
     	});
     });
 
+
+
+hook
 }, function(err) {
   console.log(err); // Error: "It broke"
 });
