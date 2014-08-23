@@ -101,6 +101,29 @@ function montaTabelaDadosPoliticos(data){
 //           '</div>'+
 //         '</div>';
 
+
+function formataValor(valor) {
+	if (valor)
+	{
+		if (valor > 999999)
+		{
+			return (valor / 1000000).toFixed(1) + " milhões";
+		}
+		else if (valor > 999)
+		{
+			return (valor / 1000).toFixed(1) + " mil";
+		}
+		else
+		{
+			return valor;
+		}
+	}
+	else
+	{
+		return "-";
+	}
+}
+
 function montaTabelaFinanciamento(data){
 
   var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
@@ -113,7 +136,7 @@ function montaTabelaFinanciamento(data){
   $.each(data, function(){
     tableHtml = tableHtml + '<tr class="qf">';
     tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';
-    tableHtml = tableHtml + '<td class="qf">' + this.montante + '</td>';
+    tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
     tableHtml = tableHtml + '</tr>';
   });
   tableHtml = tableHtml + '</tbody>'+
@@ -139,7 +162,7 @@ function montaTabelaBensPoliticos(data){
   $.each(data, function(){
     tableHtml = tableHtml + '<tr class="qf">';
     tableHtml = tableHtml + '<td class="qf">' + this.bem + '</td>';
-    tableHtml = tableHtml + '<td class="qf">' + this.montante + '</td>';
+    tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
     tableHtml = tableHtml + '</tr>';
   });
   tableHtml = tableHtml + '</tbody>'+
