@@ -40,7 +40,7 @@ promise.then(function(result) {
     
     $('.highlight-quem-financia').each(function() {  	
     	var currentKey = $(this).text();
-    	nick[currentKey]
+    	console.log('Achou: '+currentKey);
     });
 
 }, function(err) {
