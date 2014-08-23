@@ -1,7 +1,5 @@
 'use strict';
 
-console.log('\'Allo \'Allo! Content script');
-
 var nick = {};
 var total = 0;
 var promise = new Promise(function(resolve, reject) {
