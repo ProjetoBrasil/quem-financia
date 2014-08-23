@@ -1,5 +1,36 @@
 'use strict';
 
+function pegaDadosFinanciamento(id){
+  var html = '';
+  var jqxhr =
+    $.ajax({
+      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id + '/doadores?anoEleitoral=2010',
+      type : 'GET',
+      beforeSend : function(xhr){
+        xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
+      },
+      success : function(data) {
+        // alert( "success" );
+        html = montaTabelaFinanciamento(data);
+      },
+      async : false
+    });
+  return html;
+}
+
+function montaTabelaFinanciamento(data){
+
+  var tableHtml = '<table><tr><th>Empresa</th><th>Montante</th></tr>';
+  $.each(data, function(){
+    tableHtml = tableHtml + '<tr>';
+    tableHtml = tableHtml + '<td>' + this.nome + '</td>';
+    tableHtml = tableHtml + '<td>' + this.montante + '</td>';
+    tableHtml = tableHtml + '</tr>';
+  });
+  tableHtml = tableHtml + '</table>';
+  return tableHtml;
+};
+
 var nick = {};
 var total = 0;
 var promise = new Promise(function(resolve, reject) {
@@ -44,7 +75,7 @@ promise.then(function(result) {
     });
 
     $(document).on('click', '.highlight-quem-financia', function(){
-    	Tipped.create($(this), 'Some tooltip text', {
+    	Tipped.create($(this), pegaDadosFinanciamento($(this).attr('data-qf-id')), {
     		behavior: 'sticky'
     	});
     });
