@@ -187,11 +187,6 @@ promise.then(function(result) {
     $('.highlight-quem-financia').each(function() {
     	var currentKey = $(this).text();
     	$(this).attr('data-qf-id', nick[currentKey.toUpperCase()]);
-    });
-
-    $(document).on('mouseover', '.highlight-quem-financia', function(){
-    	console.log('Buscando dados do candidato');
-
     	Tipped.create($(this), function(){
     		var html = pegaDadosPolitico($(this).attr('data-qf-id')) +
                    pegaDadosFinanciamento($(this).attr('data-qf-id'), 2012) +
@@ -202,22 +197,18 @@ promise.then(function(result) {
     		return html;
 
     	}, {
-        close : true,
-    		// behavior: 'hide',
-    		// hideOnClickOutside: true,
+    		hideOnClickOutside: true,
     		// hideOthers: true,
     		padding: false,
     		radius: false,
     		showOn: {
   			  element: 'mouseenter',
   			  tooltip: 'mouseenter'
-  			}
+  			},
+			  hideOn: 'click'
     	});
     });
 
-
-
-hook
 }, function(err) {
   console.log(err); // Error: "It broke"
 });

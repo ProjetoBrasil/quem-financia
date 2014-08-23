@@ -11,96 +11,107 @@
 }
 
 .qf-box{
-	box-shadow:0 1px 2px #aaa;
-	background: rgb(247, 247, 247);
-	border-radius:3px;
-	transform-origin:top left;
-	margin: 0;
-	width: 300px;
-	padding: 15px 0px 0px;
-	font-family: 'Raleway', sans-serif;
+	box-shadow:0 1px 2px #aaa !important;
+	background: rgb(247, 247, 247) !important;
+	border-radius:3px !important;
+	transform-origin:top left !important;
+	margin: 0 !important;
+	width: 300px !important;
+	padding: 15px 0px 0px !important;
+	font-family: 'Raleway', sans-serif !important;
 }
 
 .qf-box:after {
-	position:absolute;
-	font-size:.9rem;
-	top:1.5rem;
-	right:1rem;
-	content:"i";
-	border:thin solid gray;
-	color:gray;
-	width:1rem;
-	line-height:1rem;
-	text-align:center;
-	border-radius:50%;
-	pointer-events:none;
+	position:absolute !important;
+	top:1.5rem !important;
+	right:1rem !important;
+	border:thin solid gray !important;
+	color:gray !important;
+	width:1rem !important;
+	line-height:1rem !important;
+	text-align:center !important;
+	border-radius:50% !important;
+	pointer-events:none !important;
 }
 
 .qf-full-width{
-	width: 100%;
+	width: 100% !important;
 }
 
 .qf-cabecalho {
-	padding: 0 10px;
+	padding: 0 10px !important;
+	color: #333;
 }
 
 .qf-foto, .qf-infos-pessoais{
-	float: left;
+	float: left !important;
 }
 
 .qf-infos-pessoais{
-	padding-left: 10px;
+	padding-left: 10px !important;
+	paddind-top: 11px !important;
 }
 
 .qf-foto{
-	background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
+	background-position: 50% 50% !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-radius: 50% !important;
+    width: 60px !important;
+    height: 60px !important;
 }
 
 .qf-infos-pessoais{
-	width: 220px;
+	width: 220px !important;
 }
 
 .fq-cargo-atual {
-	font-size: 0.75em;
-	font-style: italic;
+	font-size: 15px !important;
+	font-style: italic !important;
 }
 
 .qf-montante-financiado {
-	font-size: 0.85em;
-	font-weight: 600;
+	font-size: 0.85em !important;
+	font-weight: 600 !important;
 }
 
 .qf-nome {
-	font-size: 1em;
+	font-size: 16px !important;
 }
 
 .qf-bold{
-	font-weight: 600;
+	font-weight: 600 !important;
 }
 
 .qf-no-margin{
-	margin: 0;
+	margin: 0 !important;
 }
 
 .qf-cf:before,
 .qf-cf:after {
-    content: " ";
-    display: table;
+    content: " " !important;
+    display: table !important;
 }
 
 .qf-cf:after {
-    clear: both;
+    clear: both !important;
 }
 
 .qf-cf {
-    *zoom: 1;
+    *zoom: 1 !important;
 }
 
-.highlight-quem-financia{
-	background-color: green;
+.highlight-quem-financia {
+	background-color: rgba(118, 218, 118, 0.92) !important;
+	padding: 1px 2px !important;
+	border-radius: 2px !important;
+	text-shadow: 0 1px 1px #fff !important;
+}
+
+.highlight-quem-financia:before {
+	content: "$ " !important;
+	padding: 1px !important;
+	font-size: 0.8em !important;
+	vertical-align: top !important;
+	font-weight: 600 !important;
 }
