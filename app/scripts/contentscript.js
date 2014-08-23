@@ -47,8 +47,9 @@ promise.then(function(result) {
   console.log(err); // Error: "It broke"
 });
 
-
+// Verificação inicial se o ícone será mostrado ou não.
 if (window == top) {
+
   chrome.extension.onRequest.addListener(function(req, sender, sendResponse) {
 	chrome.storage.sync.get("blockedUrls", function(obj)
 		{
@@ -57,6 +58,7 @@ if (window == top) {
   });
 }
 
+// Verificação da URL da página atual
 function escape_regexp(s, ignore) {        
   var special = ["\\", "?", ".", "+", "(", ")", "{", "}", "[", "]", "$", "^", "*"];
   special.forEach(function(re) {
@@ -66,6 +68,7 @@ function escape_regexp(s, ignore) {
   return s;
 }
 
+// Verificar lista de sites bloqueados 
 function check_blacklist(sites_blacklist) {
   if (sites_blacklist) {
     var url = window.location.href;
@@ -92,6 +95,8 @@ function check_blacklist(sites_blacklist) {
   return false;
 }
 
+// Método responsável por mostrar ou não o icone do Quem Financia na barra de endereços.
+// Se retornar algo, ele será a Tooltip, se não retornar nada (NULL), não mostrará o ícone.
 var findCandidato = function(options) {
 	
 	var blacklisted = check_blacklist(options.blockedUrls);
