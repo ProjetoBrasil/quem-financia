@@ -38,7 +38,8 @@
 		  ],
 		  "css": [
 			"styles/main.css",
-			"styles/tipped.css"
+			"styles/tipped.css",
+			"styles/tables.css"
 		  ],
 		  "js": [
 			"scripts/jquery-1.9.1.js",

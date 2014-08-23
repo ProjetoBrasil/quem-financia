@@ -40,15 +40,73 @@ promise.then(function(result) {
     $('.highlight-quem-financia').each(function() {
     	var currentKey = $(this).text();
     	$(this).attr('data-qf-id', nick[currentKey.toUpperCase()]);
-    	$(this).attr('rel', 'popover');
     });
 
-    $(document).on('click', '.highlight-quem-financia', function(){
-    	Tipped.create($(this), 'Some tooltip text', {
-    		behavior: 'sticky'
+    $(document).on('mouseover', '.highlight-quem-financia', function(){
+    	console.log('Buscando dados do candidato');
+
+    	Tipped.create($(this), function(){
+    		var html = 	'<div class="qf-box">'+
+    			'<div class="qf-cabecalho qf-full-width qf-cf">'+
+    				'<a href="javascript:;"" class="close-tooltip">click to close</a>'+
+    				'<div class="qf-foto" style="background-image: url(\'http:\/\/divulgacand2014\.tse\.jus\.br\/divulga-cand-2014\/eleicao\/2014\/UF\/MG\/foto\/130000000836\.jpg\');">'+
+    				'</div><div class="qf-infos-pessoais">'+
+    					'<h1 class="qf-nome qf-no-margin qf-bold">Alexandre Marques - <small class="qf-partido">PPP</small></h1>'+
+    					'<p class="fq-cargo-atual qf-no-margin">Deputador Estadual - <span class="qf-estado">MG</span></p>'+
+    					'<p class="qf-montante-financiado qf-no-margin">R$ 1.000.000,00</p>'+
+    				'</div>'+
+    			'</div>'+
+    			'<div class="qf-body qf-full-width">'+
+    				'<table class="qf-table">'+
+    					'<thead>'+
+    						'<th class="qf-coluna-doador text-left">Doador</th>'+
+    						'<th class="qf-coluna-valor text-right">Valor ($)</th>'+
+    					'</thead>'+
+    					'<tbody>'+
+    						'<tr>'+
+    							'<td>ELEICAO 2012 ALEXANDRE DE MORAIS MARQUES VEREADOR</td>'+
+    							'<td>3500.00</td>'+
+    						'</tr>'+
+    						'<tr>'+
+    							'<td>EVANDRO FERNANDES MEDEIROS</td>'+
+    							'<td>3500.00</td>'+
+    						'</tr>'+
+    						'<tr>'+
+    							'<td>ELEICAO 2012 COMITE FINANCEIRO MG UNICO PMDB JUIZ DE FORA</td>'+
+    							'<td></td>'+
+    						'</tr>'+
+    						'<tr>'+
+    							'<td>ELEICAO 2012 COMITE FINANCEIRO MG UNICO PMDB JUIZ DE FORA</td>'+
+    							'<td>127.80</td>'+
+    						'</tr>'+
+    					'</tbody>'+
+    					'<tfoot>'+
+    						'<tr>'+
+    							'<td colspan="2"></td>'+
+    						'</tr>'+
+    					'</tfoot>'+
+    				'</table>'+
+    			'</div>'+
+    		'</div>';
+
+    		return html;
+
+    	}, {
+    		behavior: 'hide',
+    		hideOnClickOutside: true,
+    		hideOthers: true,
+    		padding: false,
+    		radius: false,
+    		showOn: {
+			  element: 'mouseenter',
+			  tooltip: 'mouseenter'
+			}
     	});
     });
 
+
+
+hook
 }, function(err) {
   console.log(err); // Error: "It broke"
 });
