@@ -1,3 +1,102 @@
-body {
-    padding: 20px;
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+:before, :after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.qf-box{
+	box-shadow:0 1px 2px #aaa;
+	background: rgb(247, 247, 247);
+	border-radius:3px;
+	transform-origin:top left;
+	margin: 0;
+	width: 300px;
+	padding: 15px 0px 0px;
+	font-family: 'Raleway', sans-serif;
+}
+
+.qf-box:after {
+	position:absolute;
+	font-size:.9rem;
+	top:1.5rem;
+	right:1rem;
+	content:"i";
+	border:thin solid gray;
+	color:gray;
+	width:1rem;
+	line-height:1rem;
+	text-align:center;
+	border-radius:50%;
+	pointer-events:none;
+}
+
+.qf-full-width{
+	width: 100%;
+}
+
+.qf-cabecalho {
+	padding: 0 10px;
+}
+
+.qf-foto, .qf-infos-pessoais{
+	float: left;
+}
+
+.qf-infos-pessoais{
+	padding-left: 10px;
+}
+
+.qf-foto{
+	background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.qf-infos-pessoais{
+	width: 220px;
+}
+
+.fq-cargo-atual {
+	font-size: 0.75em;
+	font-style: italic;
+}
+
+.qf-montante-financiado {
+	font-size: 0.85em;
+	font-weight: 600;
+}
+
+.qf-nome {
+	font-size: 1em;
+}
+
+.qf-bold{
+	font-weight: 600;
+}
+
+.qf-no-margin{
+	margin: 0;
+}
+
+.qf-cf:before,
+.qf-cf:after {
+    content: " ";
+    display: table;
+}
+
+.qf-cf:after {
+    clear: both;
+}
+
+.qf-cf {
+    *zoom: 1;
 }
