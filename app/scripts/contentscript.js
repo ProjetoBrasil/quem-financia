@@ -102,7 +102,7 @@ function montaTabelaFinanciamento(data){
             '<table class="qf-table">'+
               '<thead>'+
                 '<th class="qf qf-coluna-doador text-left">Doador</th>'+
-                '<th class="qf qf-coluna-valor text-right">Montante (R$)</th>'+
+                '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
               '</thead>'+
               '<tbody>';
   $.each(data, function(){
