@@ -197,15 +197,12 @@ promise.then(function(result) {
     		return html;
 
     	}, {
-    		hideOnClickOutside: true,
-    		// hideOthers: true,
     		padding: false,
     		radius: false,
     		showOn: {
   			  element: 'mouseenter',
   			  tooltip: 'mouseenter'
-  			},
-			  hideOn: 'click'
+  			}
     	});
     });
 
@@ -225,7 +222,7 @@ if (window == top) {
 }
 
 // Verificação da URL da página atual
-function escape_regexp(s, ignore) {        
+function escape_regexp(s, ignore) {
   var special = ["\\", "?", ".", "+", "(", ")", "{", "}", "[", "]", "$", "^", "*"];
   special.forEach(function(re) {
     if (!ignore || ignore.indexOf(re) < 0)
@@ -234,7 +231,7 @@ function escape_regexp(s, ignore) {
   return s;
 }
 
-// Verificar lista de sites bloqueados 
+// Verificar lista de sites bloqueados
 function check_blacklist(sites_blacklist) {
   if (sites_blacklist) {
     var url = window.location.href;
