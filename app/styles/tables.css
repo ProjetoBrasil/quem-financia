@@ -65,7 +65,7 @@ td.qf {
   font-weight: 300;
   border: 0;
   margin: 0;
-  text-transform: capitalize;
+  /*text-transform: capitalize;*/
 }
 
 td.qf:last-child {
