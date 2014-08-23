@@ -38,12 +38,16 @@
 			"https://*/*"
 		  ],
 		  "css": [
-			"styles/main.css"
+			"styles/main.css",
+			"styles/tipped.css",
+			"styles/tables.css"
 		  ],
 		  "js": [
-      "scripts/jquery-1.9.1.js",
-      "scripts/jquery-highlight1.js",
-			"scripts/contentscript.js"
+			"scripts/jquery-1.9.1.js",
+			"scripts/jquery-highlight1.js",
+			"scripts/contentscript.js",
+			"scripts/imagesloaded.pkgd.min.js",
+			"scripts/tipped.js"
 		  ],
 		  "run_at": "document_end",
 		  "all_frames": false
