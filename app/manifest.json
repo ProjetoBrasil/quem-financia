@@ -8,7 +8,8 @@
     "icons": {
         "16": "images/icon-16.png",
         "19": "images/icon-19.png",
-		"38": "images/icon-38.png"
+		"38": "images/icon-38.png",
+		"48": "images/icon-48.png"
     },
 	"page_action": {
 		"default_icon":{
@@ -16,8 +17,8 @@
 			"19": "images/icon-19.png",
 			"38": "images/icon-38.png"
 		},
-		"default_title":"Quem financia?",
-		"default_popup":"page-action.html"
+		"default_title":"Quem financia?"/*,
+		"default_popup":"page-action.html"*/
 	},
 	"permissions": [
 		"tabs",
@@ -38,7 +39,8 @@
 		  ],
 		  "css": [
 			"styles/main.css",
-			"styles/tipped.css"
+			"styles/tipped.css",
+			"styles/tables.css"
 		  ],
 		  "js": [
 			"scripts/jquery-1.9.1.js",

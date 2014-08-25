@@ -1,84 +1,85 @@
 /*** Table Styles **/
 
-th {
+.qf-table-doacoes,
+.qf-table-bens{
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+th.qf {
   color: #7A7A7A;
   border-bottom: 2px solid #9ea7af;
-  font-size: 0.9em;
+  font-size: 12px;
   font-weight: 100;
   padding: 7px;
   text-align: left;
   vertical-align: middle;
 }
 
-th:first-child {
+th.qf:first-child {
   border-top-left-radius:3px;
 }
 
-th:last-child {
+th.qf:last-child {
   border-top-right-radius:3px;
   border-right:none;
 }
 
-tr {
+tr.qf {
   border-top: 1px solid #C1C3D1;
   border-bottom-: 1px solid #C1C3D1;
   color:#666B85;
-  font-size:16px;
+  font-size:12px;
   font-weight:normal;
 }
 
-tr:hover td {
+tr.qf:hover td {
   font-weight: 600;
 }
 
-tr:first-child {
+tr.qf:first-child {
   border-top:none;
 }
 
-tr:last-child {
+tr.qf:last-child {
   border-bottom:none;
 }
 
-tr:nth-child(odd) td {
-  background:#EBEBEB;
-}
-
-tr:last-child td:first-child {
+tr.qf:last-child td:first-child {
   border-bottom-left-radius:3px;
 }
 
-tr:last-child td:last-child {
+tr.qf:last-child td:last-child {
   border-bottom-right-radius:3px;
 }
 
-td {
+td.qf {
   background: #FFFFFF;
   padding: 5px;
   text-align: left;
   vertical-align: middle;
   font-weight: 300;
-  font-size: 0.8em;
   border: 0;
   margin: 0;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
-td:last-child {
+td.qf:last-child {
   border-right: 0px;
 }
 
-th.text-left,
-td.text-left {
+th.qf.text-left,
+td.qf.text-left {
   text-align: left;
 }
 
-th.text-center,
-td.text-center {
+th.qf.text-center,
+td.qf.text-center {
   text-align: center;
 }
 
-th.text-right,
-td.text-right {
+th.qf.text-right,
+td.qf.text-right {
   text-align: right;
 }
 

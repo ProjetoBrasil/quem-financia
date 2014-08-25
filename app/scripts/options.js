@@ -1,5 +1,6 @@
 window.addEventListener('load', function(ev) { 
   restore_options();
+  window.opener.mostrarAlerta();
   document.getElementById("save").addEventListener("click", function(ev) {
     save_options();
   }); 
