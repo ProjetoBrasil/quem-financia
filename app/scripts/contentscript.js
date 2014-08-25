@@ -1,13 +1,16 @@
 'use strict';
 
+var apiBaseUrl = 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/';
+var appToken = "WlnfiCtWlgg7";
+
 function pegaDadosFinanciamento(id, anoEleitoral){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id + '/doadores?anoEleitoral=' + anoEleitoral,
+      url : apiBaseUrl + id + '/doadores?anoEleitoral=' + anoEleitoral,
       type : 'GET',
       beforeSend : function(xhr){
-        xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
+        xhr.setRequestHeader('App-Token', appToken);
       },
       success : function(data) {
         // alert( "success" );
@@ -22,10 +25,10 @@ function pegaDadosPolitico(id){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id,
+      url : apiBaseUrl + id,
       type : 'GET',
       beforeSend : function(xhr){
-        xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
+        xhr.setRequestHeader('App-Token', appToken);
       },
       success : function(data) {
         // alert( "success" );
@@ -40,10 +43,10 @@ function pegaBensPolitico(id){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/' + id + '/bens/',
+      url : apiBaseUrl + id + '/bens/',
       type : 'GET',
       beforeSend : function(xhr){
-        xhr.setRequestHeader('App-Token', 'WlnfiCtWlgg7');
+        xhr.setRequestHeader('App-Token', appToken);
       },
       success : function(data) {
         // alert( "success" );
@@ -63,12 +66,10 @@ function showHideQFMenu(id){
 function montaTabelaDadosPoliticos(data){
   return '<div class="qf-box">'+
           '<div class="qf-cabecalho qf-full-width qf-cf">'+
-            // '<a href="javascript:;"" class="close-tooltip">click to close</a>'+
             '<div class="qf-foto" style="background-image: url('+ data.foto +');">'+
             '</div><div class="qf-infos-pessoais">'+
               '<h1 class="qf-nome qf-no-margin qf-bold">' + data.apelido + ' - <small class="qf-partido">' + data.partido + '</small></h1>'+
               '<p class="fq-cargo-atual qf-no-margin">' + data.cargo + ' - <span class="qf-estado">' + data.estado + '</span></p>'+
-              // '<p class="qf-montante-financiado qf-no-margin">' + data + '</p>'+
             '</div>'+
             '</div><div id="qf-menu-poitico"><span class="qf-botoes-tabelas" onclick="$(\'#qf-table-\' + this.id).show().siblings().hide();" id="bens">Bens</span><span class="qf-botoes-tabelas" onclick="$(\'#qf-table-\' + this.id).show().siblings().hide();" id="doacoes">Doações</span></div>';
 
@@ -99,12 +100,12 @@ function formataValor(valor) {
 function montaTabelaFinanciamento(data){
 
   var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
-            '<table class="qf-table">'+
-              '<thead>'+
-                '<th class="qf qf-coluna-doador text-left">Doador</th>'+
-                '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
-              '</thead>'+
-              '<tbody>';
+                    '<table class="qf-table">'+
+                      '<thead>'+
+                        '<th class="qf qf-coluna-doador text-left">Doador</th>'+
+                        '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
+                      '</thead>'+
+                      '<tbody>';
   $.each(data, function(){
     tableHtml = tableHtml + '<tr class="qf">';
     tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';
@@ -153,7 +154,7 @@ var total = 0;
 var promise = new Promise(function(resolve, reject) {
 	$.ajax({
 		url: "http://api.transparencia.org.br:80/sandbox/v1/candidatos?estado=MG&cargo=1",
-		headers: {"App-Token": "WlnfiCtWlgg7"},
+		headers: {"App-Token": appToken},
 		success: function (data) {
 			data.forEach(function(element){
 				nick[element.apelido] = element.id;
@@ -168,7 +169,7 @@ var promise = new Promise(function(resolve, reject) {
 	estados.forEach(function(data){
 		$.ajax({
 			url: "http://api.transparencia.org.br:80/sandbox/v1/candidatos?estado=" + data + "&cargo=3",
-			headers: {"App-Token": "WlnfiCtWlgg7"},
+			headers: {"App-Token": appToken},
 			success: function (data) {
 				data.forEach(function(element){
 					nick[element.apelido] = element.id;
