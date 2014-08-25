@@ -1,20 +1,19 @@
 'use strict';
 
-var apiBaseUrl = 'http://api.transparencia.org.br:80/sandbox/v1/candidatos/';
+var apiBaseUrl = 'http://api.transparencia.org.br:80/sandbox/v1/candidatos';
 var appToken = "WlnfiCtWlgg7";
 
 function pegaDadosFinanciamento(id, anoEleitoral){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : apiBaseUrl + id + '/doadores?anoEleitoral=' + anoEleitoral,
+      url : apiBaseUrl + '/' + id + '/doadores?anoEleitoral=' + anoEleitoral,
       type : 'GET',
       beforeSend : function(xhr){
         xhr.setRequestHeader('App-Token', appToken);
       },
       success : function(data) {
-        // alert( "success" );
-        html = montaTabelaFinanciamento(data);
+        html = montaTabela(data, "doacoes", "Doador", "Montante (R$)", "nome", false);
       },
       async : false
     });
@@ -25,13 +24,12 @@ function pegaDadosPolitico(id){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : apiBaseUrl + id,
+      url : apiBaseUrl + '/' + id,
       type : 'GET',
       beforeSend : function(xhr){
         xhr.setRequestHeader('App-Token', appToken);
       },
       success : function(data) {
-        // alert( "success" );
         html = montaTabelaDadosPoliticos(data);
       },
       async : false
@@ -43,14 +41,13 @@ function pegaBensPolitico(id){
   var html = '';
   var jqxhr =
     $.ajax({
-      url : apiBaseUrl + id + '/bens/',
+      url : apiBaseUrl + '/' + id + '/bens/',
       type : 'GET',
       beforeSend : function(xhr){
         xhr.setRequestHeader('App-Token', appToken);
       },
       success : function(data) {
-        // alert( "success" );
-        html = montaTabelaBensPoliticos(data);
+        html = montaTabela(data, "bens", "Bem", "Valor (R$)", "bem", true);
       },
       async : false
     });
@@ -71,70 +68,31 @@ function montaTabelaDadosPoliticos(data){
               '<h1 class="qf-nome qf-no-margin qf-bold">' + data.apelido + ' - <small class="qf-partido">' + data.partido + '</small></h1>'+
               '<p class="fq-cargo-atual qf-no-margin">' + data.cargo + ' - <span class="qf-estado">' + data.estado + '</span></p>'+
             '</div>'+
-            '</div><div id="qf-menu-poitico"><span class="qf-botoes-tabelas" onclick="$(\'#qf-table-\' + this.id).show().siblings().hide();" id="bens">Bens</span><span class="qf-botoes-tabelas" onclick="$(\'#qf-table-\' + this.id).show().siblings().hide();" id="doacoes">Doações</span></div>';
+            '</div>'+
+            '<div id="qf-menu-poitico">'+
+              '<span class="qf-botoes-tabelas active" onclick="$(this).addClass(\'active\').siblings().first().removeClass(\'active\'); $(\'#qf-table-\' + this.id).show().siblings().hide();" id="doacoes">Doações</span>' +
+              '<span class="qf-botoes-tabelas" onclick="$(this).addClass(\'active\').siblings().first().removeClass(\'active\'); $(\'#qf-table-\' + this.id).show().siblings().hide();" id="bens">Bens</span>' +
+            '</div>';
 
 }
 
-function formataValor(valor) {
-	if (valor)
-	{
-		if (valor > 999999)
-		{
-			return (valor / 1000000).toFixed(1) + " milhões";
-		}
-		else if (valor > 999)
-		{
-			return (valor / 1000).toFixed(1) + " mil";
-		}
-		else
-		{
-			return valor;
-		}
-	}
-	else
-	{
-		return "-";
-	}
-}
+function montaTabela(data, id, head1, head2, itemName, hiddenFlag){
 
-function montaTabelaFinanciamento(data){
+  var hiddenClass = "";
+  if(hiddenFlag){
+    hiddenClass = "qf-hide"
+  }
 
-  var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
-                    '<table class="qf-table">'+
-                      '<thead>'+
-                        '<th class="qf qf-coluna-doador text-left">Doador</th>'+
-                        '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
-                      '</thead>'+
-                      '<tbody>';
-  $.each(data, function(){
-    tableHtml = tableHtml + '<tr class="qf">';
-    tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';
-    tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
-    tableHtml = tableHtml + '</tr>';
-  });
-  tableHtml = tableHtml + '</tbody>'+
-              '<tfoot>'+
-                '<tr>'+
-                  '<td colspan="2"></td>'+
-                '</tr>'+
-              '</tfoot>'+
-            '</table>'+
-          '</div>';
-  return tableHtml;
-};
-
-function montaTabelaBensPoliticos(data){
-
-  var tableHtml = '<div id="qf-table-bens" class="qf-body qf-full-width qf-hide">'+
+  var tableHtml = '<div id="qf-table-' + id + '" class="qf-body qf-full-width ' + hiddenClass + '">'+
             '<table class="qf-table">'+
               '<thead>'+
-                '<th class="qf qf-coluna-doador text-left">Bem</th>'+
-                '<th class="qf qf-coluna-valor text-right">Valor (R$)</th>'+
+                '<th class="qf qf-coluna-doador text-left">' + head1 + '</th>'+
+                '<th class="qf qf-coluna-valor text-right">' + head2 + '</th>'+
               '</thead>'+
               '<tbody>';
   $.each(data, function(){
     tableHtml = tableHtml + '<tr class="qf">';
-    tableHtml = tableHtml + '<td class="qf">' + this.bem + '</td>';
+    tableHtml = tableHtml + '<td class="qf">' + this[itemName] + '</td>';
     tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
     tableHtml = tableHtml + '</tr>';
   });
@@ -147,13 +105,90 @@ function montaTabelaBensPoliticos(data){
             '</table>'+
           '</div>';
   return tableHtml;
-};
+}
+
+
+
+// function montaTabelaFinanciamento(data){
+
+//   var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
+//                     '<table class="qf-table">'+
+//                       '<thead>'+
+//                         '<th class="qf qf-coluna-doador text-left">Doador</th>'+
+//                         '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
+//                       '</thead>'+
+//                       '<tbody>';
+//   $.each(data, function(){
+//     tableHtml = tableHtml + '<tr class="qf">';
+//     tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';
+//     tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
+//     tableHtml = tableHtml + '</tr>';
+//   });
+//   tableHtml = tableHtml + '</tbody>'+
+//               '<tfoot>'+
+//                 '<tr>'+
+//                   '<td colspan="2"></td>'+
+//                 '</tr>'+
+//               '</tfoot>'+
+//             '</table>'+
+//           '</div>';
+//   return tableHtml;
+// };
+
+// function montaTabelaBensPoliticos(data){
+
+//   var tableHtml = '<div id="qf-table-bens" class="qf-body qf-full-width qf-hide">'+
+//             '<table class="qf-table">'+
+//               '<thead>'+
+//                 '<th class="qf qf-coluna-doador text-left">Bem</th>'+
+//                 '<th class="qf qf-coluna-valor text-right">Valor (R$)</th>'+
+//               '</thead>'+
+//               '<tbody>';
+//   $.each(data, function(){
+//     tableHtml = tableHtml + '<tr class="qf">';
+//     tableHtml = tableHtml + '<td class="qf">' + this.bem + '</td>';
+//     tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
+//     tableHtml = tableHtml + '</tr>';
+//   });
+//   tableHtml = tableHtml + '</tbody>'+
+//               '<tfoot>'+
+//                 '<tr>'+
+//                   '<td colspan="2"></td>'+
+//                 '</tr>'+
+//               '</tfoot>'+
+//             '</table>'+
+//           '</div>';
+//   return tableHtml;
+// };
+
+
+function formataValor(valor) {
+  if (valor)
+  {
+    if (valor > 999999)
+    {
+      return (valor / 1000000).toFixed(1) + " milhões";
+    }
+    else if (valor > 999)
+    {
+      return (valor / 1000).toFixed(1) + " mil";
+    }
+    else
+    {
+      return valor;
+    }
+  }
+  else
+  {
+    return "-";
+  }
+}
 
 var nick = {};
 var total = 0;
 var promise = new Promise(function(resolve, reject) {
 	$.ajax({
-		url: "http://api.transparencia.org.br:80/sandbox/v1/candidatos?estado=MG&cargo=1",
+		url: apiBaseUrl + "?estado=MG&cargo=1",
 		headers: {"App-Token": appToken},
 		success: function (data) {
 			data.forEach(function(element){
@@ -168,7 +203,7 @@ var promise = new Promise(function(resolve, reject) {
 
 	estados.forEach(function(data){
 		$.ajax({
-			url: "http://api.transparencia.org.br:80/sandbox/v1/candidatos?estado=" + data + "&cargo=3",
+			url: apiBaseUrl + "?estado=" + data + "&cargo=3",
 			headers: {"App-Token": appToken},
 			success: function (data) {
 				data.forEach(function(element){
