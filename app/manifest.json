@@ -17,8 +17,7 @@
 			"19": "images/icon-19.png",
 			"38": "images/icon-38.png"
 		},
-		"default_title":"Quem financia?"/*,
-		"default_popup":"page-action.html"*/
+		"default_title":"Quem financia?"
 	},
 	"permissions": [
 		"tabs",

@@ -101,11 +101,13 @@ function montaTabelaFinanciamento(data){
 
   var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
                     '<table class="qf-table">'+
-                      '<thead>'+
-                        '<th class="qf qf-coluna-doador text-left">Doador</th>'+
-                        '<th class="qf qf-coluna-valor">Montante (R$)</th>'+
+                      '<thead class="qf">'+
+                        '<tr class="qf tr-head">' +
+                          '<th class="qf qf-coluna-doador text-left">Doador</th>'+
+                          '<th class="qf qf-coluna-valor text-right">Montante (R$)</th>'+
+                        '</tr>' +
                       '</thead>'+
-                      '<tbody>';
+                      '<tbody class="qf">';
   $.each(data, function(){
     tableHtml = tableHtml + '<tr class="qf">';
     tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';

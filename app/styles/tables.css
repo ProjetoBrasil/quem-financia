@@ -1,9 +1,8 @@
 /*** Table Styles **/
 
-.qf-table-doacoes,
-.qf-table-bens{
-  max-height: 400px;
-  overflow-y: scroll;
+.qf-table,
+tbody.qf{
+  width: 100%;
 }
 
 th.qf {
@@ -89,4 +88,18 @@ td.qf.text-right {
 
 .qf-coluna-valor{
   width: 28%;
+}
+
+.qf .tr-head{
+  display: flex;
+}
+
+thead.qf, tbody.qf {
+  display: block;
+}
+
+tbody.qf {
+    height: 200px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
 }
