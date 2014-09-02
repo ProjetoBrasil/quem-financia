@@ -78,42 +78,11 @@ function montaTabelaDadosPoliticos(data){
 
 function montaTabela(data, id, head1, head2, itemName, hiddenFlag){
 
-<<<<<<< HEAD
-function montaTabelaFinanciamento(data){
 
-  var tableHtml = '<div id="qf-table-doacoes" class="qf-body qf-full-width">'+
-                    '<table class="qf-table">'+
-                      '<thead class="qf">'+
-                        '<tr class="qf tr-head">' +
-                          '<th class="qf qf-coluna-doador text-left">Doador</th>'+
-                          '<th class="qf qf-coluna-valor text-right">Montante (R$)</th>'+
-                        '</tr>' +
-                      '</thead>'+
-                      '<tbody class="qf">';
-  $.each(data, function(){
-    tableHtml = tableHtml + '<tr class="qf">';
-    tableHtml = tableHtml + '<td class="qf">' + this.nome + '</td>';
-    tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
-    tableHtml = tableHtml + '</tr>';
-  });
-  tableHtml = tableHtml + '</tbody>'+
-              '<tfoot>'+
-                '<tr>'+
-                  '<td colspan="2"></td>'+
-                '</tr>'+
-              '</tfoot>'+
-            '</table>'+
-          '</div>';
-  return tableHtml;
-};
-
-function montaTabelaBensPoliticos(data){
-=======
   var hiddenClass = "";
   if(hiddenFlag){
     hiddenClass = "qf-hide"
   }
->>>>>>> 82e5c1089432a78deab41cc2ccca9942962975f1
 
   var tableHtml = '<div id="qf-table-' + id + '" class="qf-body qf-full-width ' + hiddenClass + '">'+
             '<table class="qf-table">'+
