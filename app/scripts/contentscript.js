@@ -1,6 +1,6 @@
 'use strict';
 
-var apiBaseUrl = 'http://api.transparencia.org.br:80/sandbox/v1/candidatos';
+var apiBaseUrl = 'http://api.transparencia.org.br:80/api/v1/candidatos';
 var appToken = "WlnfiCtWlgg7";
 
 function pegaDadosFinanciamento(id, anoEleitoral){
