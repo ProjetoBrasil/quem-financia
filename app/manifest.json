@@ -1,55 +1,57 @@
 {
     "name": "Quem Financia?",
-	"author":"Projeto Brasil",
-    "version": "0.1.0",
+    "author": "Projeto Brasil",
+    "version": "0.1.1",
     "manifest_version": 2,
     "description": "Mostrar informações de quem financia a candidatura dos candidatos nas eleições.",
-	"options_page":"options.html",
+    "options_page": "options.html",
     "icons": {
         "16": "images/icon-16.png",
         "19": "images/icon-19.png",
-		"38": "images/icon-38.png",
-		"48": "images/icon-48.png"
+        "38": "images/icon-38.png",
+        "48": "images/icon-48.png"
     },
-	"page_action": {
-		"default_icon":{
-			"16": "images/icon-16.png",
-			"19": "images/icon-19.png",
-			"38": "images/icon-38.png"
-		},
-		"default_title":"Quem financia?"
-	},
-	"permissions": [
-		"tabs",
-		"activeTab",
-		"storage"
-	],
-	"omnibox": {
-		"keyword": "Candidato"
-	},
-	"background": {
-		"scripts": ["scripts/background.js"]
-	},
-	"content_scripts": [
-		{
-		  "matches": [
-			"http://*/*",
-			"https://*/*"
-		  ],
-		  "css": [
-			"styles/tipped.css",
-			"styles/qf-bootstrap.css",
-			"styles/main.css"
-		  ],
-		  "js": [
-			"scripts/jquery-1.9.1.js",
-			"scripts/tipped.js",
-			"scripts/jquery-highlight1.js",
-			"scripts/contentscript.js",
-			"scripts/imagesloaded.pkgd.min.js"
-		  ],
-		  "run_at": "document_end",
-		  "all_frames": false
-		}
-	]
+    "page_action": {
+        "default_icon": {
+            "16": "images/icon-16.png",
+            "19": "images/icon-19.png",
+            "38": "images/icon-38.png"
+        },
+        "default_title": "Quem financia?"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "storage"
+    ],
+    "omnibox": {
+        "keyword": "Candidato"
+    },
+    "background": {
+        "scripts": [
+            "scripts/background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "css": [
+                "styles/tipped.css",
+                "styles/qf-bootstrap.css",
+                "styles/main.css"
+            ],
+            "js": [
+                "scripts/jquery-1.9.1.js",
+                "scripts/tipped.js",
+                "scripts/jquery-highlight1.js",
+                "scripts/contentscript.js",
+                "scripts/imagesloaded.pkgd.min.js"
+            ],
+            "run_at": "document_end",
+            "all_frames": false
+        }
+    ]
 }
