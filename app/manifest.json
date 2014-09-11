@@ -37,9 +37,9 @@
 			"https://*/*"
 		  ],
 		  "css": [
-			"styles/main.css",
 			"styles/tipped.css",
-			"styles/tables.css"
+			"styles/qf-bootstrap.css",
+			"styles/main.css"
 		  ],
 		  "js": [
 			"scripts/jquery-1.9.1.js",

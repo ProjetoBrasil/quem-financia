@@ -1,14 +1,3 @@
-.qf-botoes-tabelas {
-	color: #333;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	padding: 2px 20px;
-	cursor: pointer;
-	background-color: #fff;
-	margin: 0 5px;
-	border-radius: 3px;
-}
-
 .qf-box{
 	box-shadow:0 1px 2px #aaa;
 	background: rgb(247, 247, 247);
@@ -18,8 +7,23 @@
 	width: 450px;
 	padding: 0px 0px 0px;
 	font-family: 'Raleway', sans-serif;
-	max-height: 400px;
+	max-height: 450px;
   	overflow-y: scroll;
+  	position: relative;
+}
+
+.qf-box .qf-logo-projeto-brasil{
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100px;
+	z-index: 10;
+	background-color: #09404C;
+	padding: 3px 5px 4px;
+}
+
+.qf-logo-projeto-brasil img{
+	width: 100%;
 }
 
 .qf-box:after {
@@ -35,68 +39,84 @@
 	pointer-events:none;
 }
 
-.qf-full-width{
-	width: 100%;
-}
-
-.qf-cabecalho {
-	padding: 0 10px;
-	color: #333;
-}
-
-.qf-foto, .qf-infos-pessoais{
-	float: left;
-}
-
-.qf-infos-pessoais{
-	padding: 21px 0 0 10px;
-	width: 220px;
-}
-
 .qf-foto{
 	background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    padding-top: 10px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 80px;
+	height: 80px;
+	padding-top: 10px;
+	margin: 15px auto 10px;
+	border-radius: 50%;
 }
 
-.fq-cargo-atual {
-	font-size: 15px;
-	font-style: italic;
+.qf-cabecalho{
+	margin-top: 10px;
 }
 
-.qf-montante-financiado {
-	font-size: 0.85em;
+.qf-cabecalho h2{
+	color: #30b786;
+	margin: 25px auto 0;
+	font-size: 20px;
+}
+
+.qf-cabecalho h4{
+	color: #09404C;
+	margin-top: 5px;
+}
+
+.qf-box .btn-success{
+	color: white;
+	background-color: #30b786;
+	border-color: #1D9C6E;
+}
+
+.qf-box .row{
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.qf-coluna-esq{
+  width: 72%;
+}
+
+.qf-coluna-dir{
+  width: 28%;
+}
+
+.qf-disclaimer{
+	font-size: 10px;
+	color: #4E4D4D;
+}
+
+.qf-box table th{
+	color: #30b786;
 	font-weight: 600;
-}
-
-.qf-nome {
 	font-size: 16px;
 }
 
-.qf-bold{
-	font-weight: 600;
+.qf-box table td{
+	font-size: 12px;
+	color: #09404C;
 }
 
-.qf-no-margin{
-	margin: 0;
+.qf-box table thead tr{
+  display: flex;
 }
 
-.qf-cf:before,
-.qf-cf:after {
-    content: " ";
-    display: table;
+.qf-box table thead,
+.qf-box table tbody {
+  display: block;
 }
 
-.qf-cf:after {
-    clear: both;
+.qf-box table tbody {
+    height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
-.qf-cf {
-    *zoom: 1;
+.qf-box table tbody tr{
+	display: flex;
 }
 
 .highlight-quem-financia {
@@ -112,11 +132,6 @@
 	font-size: 0.8em;
 	vertical-align: top;
 	font-weight: 600;
-}
-
-#qf-menu-poitico{
-	text-align: center;
-	margin: 7px 0;
 }
 
 .qf-hide{

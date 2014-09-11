@@ -54,57 +54,71 @@ function pegaBensPolitico(id){
 	return html;
 }
 
-function showHideQFMenu(id){
-
-
-
+function fechaQFBox(){
+	return '<div class="row">' +
+			'<div class="col-xs-12">' +
+				'<p class="qf-disclaimer">' +
+					'<strong>Fonte dos dados:</strong> Transparência Brasil, projetos Excelências e Às Claras. A Transparência Brasil não se responsabiliza pelo uso que venha a ser feito desses dados nesta aplicação.' +
+				'</p>' +
+			'</div>' +
+		'</div>' +
+	'</div>';
 }
 
 function montaTabelaDadosPoliticos(data){
-	return '<div class="qf-box">'+
-	'<div class="qf-cabecalho qf-full-width qf-cf">'+
-	'<div class="qf-foto" style="background-image: url('+ data.foto +');">'+
-	'</div><div class="qf-infos-pessoais">'+
-	'<h1 class="qf-nome qf-no-margin qf-bold">' + data.apelido + ' - <small class="qf-partido">' + data.partido + '</small></h1>'+
-	'<p class="fq-cargo-atual qf-no-margin">' + data.cargo + ' - <span class="qf-estado">' + data.estado + '</span></p>'+
-	'</div>'+
-	'</div>'+
-	'<div id="qf-menu-poitico">'+
-	'<span class="qf-botoes-tabelas active" onclick="$(this).addClass(\'active\').siblings().first().removeClass(\'active\'); $(\'#qf-table-\' + this.id).show().siblings().hide();" id="doacoes">Doações</span>' +
-	'<span class="qf-botoes-tabelas" onclick="$(this).addClass(\'active\').siblings().first().removeClass(\'active\'); $(\'#qf-table-\' + this.id).show().siblings().hide();" id="bens">Bens</span>' +
-	'</div>';
-
+	return '<div class="qf-box qf-bootstrap">' +
+						'<a href="//www.projetobrasil.org" target="_blank" class="qf-logo-projeto-brasil">' +
+							'<img src="//projetobrasil.org/images/logo-projeto-brasil.png" alt="Logo do Projeto Brasil">' +
+						'</a>' +
+						'<div class="row qf-cabecalho">' +
+							'<div class="col-xs-4">' +
+								'<div class="qf-foto" style="background-image: url('+ data.foto +');">' +
+								'</div>' +
+							'</div>' +
+							'<div class="col-xs-8">' +
+								'<h2>' + data.apelido + ' - ' + data.partido +  '</h2>' +
+								'<h4>' + data.cargo + ' - ' + data.estado + '</h4>' +
+							'</div>' +
+						'</div>' +
+						'<div class="row">' +
+							'<div class="col-xs-12 text-center">' +
+								'<div class="btn-group">' +
+								  '<button type="button" class="btn btn-success" onclick="$(this).addClass(\'active\').siblings().first().removeClass(\'active\'); $(\'#qf-table-doacoes\').show(); $(\'#qf-table-bens\').hide();" id="doacoes">Doações</button>' +
+								  '<button type="button" class="btn btn-success" onclick="$(this).addClass(\'active\').siblings().first().removeClass(\'active\'); $(\'#qf-table-bens\').show(); $(\'#qf-table-doacoes\').hide();" id="bens">Bens</button>' +
+								'</div>' +
+							'</div>' +
+						'</div>';
 }
 
 function montaTabela(data, id, head1, head2, itemName, hiddenFlag){
-
 
 	var hiddenClass = "";
 	if(hiddenFlag){
 		hiddenClass = "qf-hide"
 	}
 
-	var tableHtml = '<div id="qf-table-' + id + '" class="qf-body qf-full-width ' + hiddenClass + '">'+
-	'<table class="qf-table">'+
-	'<thead>'+
-	'<th class="qf qf-coluna-doador text-left">' + head1 + '</th>'+
-	'<th class="qf qf-coluna-valor text-right">' + head2 + '</th>'+
-	'</thead>'+
-	'<tbody>';
+	var tableHtml = '<div class="row '+ hiddenClass + '" id="qf-table-' + id + '">' +
+										'<div class="col-xs-12">' +
+											'<table class="table table-striped table-condensed">' +
+												'<thead>' +
+													'<tr>' +
+														'<th class="qf-coluna-esq">' + head1 + '</th>' +
+														'<th class="qf-coluna-dir text-right">' + head2 + '</th>' +
+													'</tr>' +
+												'</thead>' +
+												'<tbody>';
+
 	$.each(data, function(){
-		tableHtml = tableHtml + '<tr class="qf">';
-		tableHtml = tableHtml + '<td class="qf">' + this[itemName] + '</td>';
-		tableHtml = tableHtml + '<td class="qf">' + formataValor(this.montante) + '</td>';
+		tableHtml = tableHtml + '<tr>';
+		tableHtml = tableHtml + '<td class="qf-coluna-esq text-left">' + this[itemName] + '</td>';
+		tableHtml = tableHtml + '<td class="qf-coluna-dir text-right">' + formataValor(this.montante) + '</td>';
 		tableHtml = tableHtml + '</tr>';
 	});
-	tableHtml = tableHtml + '</tbody>'+
-	'<tfoot>'+
-	'<tr>'+
-	'<td colspan="2"></td>'+
-	'</tr>'+
-	'</tfoot>'+
-	'</table>'+
-	'</div>';
+	tableHtml += '</tbody>' +
+							'</table>' +
+						'</div>' +
+					'</div>';
+
 	return tableHtml;
 }
 
@@ -114,11 +128,11 @@ function formataValor(valor) {
 	{
 		if (valor > 999999)
 		{
-			return (valor / 1000000).toFixed(1) + " milhões";
+			return (valor / 1000000).toFixed(1) + " Milhões";
 		}
 		else if (valor > 999)
 		{
-			return (valor / 1000).toFixed(1) + " mil";
+			return (valor / 1000).toFixed(1) + " Mil";
 		}
 		else
 		{
@@ -137,10 +151,10 @@ function alteraPagina(){
 	        "DILMA" : "1511125",
 	        "EDUARDO JORGE" : "1511123",
 	        "EYMAEL" : "1511121",
-	        "LEVY FIDELIX" : "1511116",
+	        "LEVY FIDÉLIX" : "1511116",
 	        "LUCIANA GENRO" : "1511119",
 	        "MARINA SILVA" : "1511108",
-	        "MAURO IASI" : "1511102",
+	        "MAURO IÁSI" : "1511102",
 	        "PASTOR EVERALDO" : "1511106",
 	        "RUI COSTA PIMENTA" : "1511111",
 	        "ZÉ MARIA" : "1511114",
@@ -346,10 +360,9 @@ function alteraPagina(){
 		Tipped.create($(this), function(){
 			var html = pegaDadosPolitico($(this).attr('data-qf-id')) + '<div>' +
 			pegaDadosFinanciamento($(this).attr('data-qf-id'), 2010) +
-			pegaBensPolitico($(this).attr('data-qf-id')) + '</div>';
+			pegaBensPolitico($(this).attr('data-qf-id')) + fechaQFBox();;
 
 			return html;
-
 		},
 		{
 			padding: false,
@@ -361,6 +374,10 @@ function alteraPagina(){
 		});
 	});
 }
+
+// Para persistir o tooltip de maneira a facilitar o debug, troque a opção showOn da chamada do Tipped pelos parametros abaixo.
+// close: true,
+// hideOn: false
 
 alteraPagina();
 
