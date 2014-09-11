@@ -43,10 +43,10 @@
 		  ],
 		  "js": [
 			"scripts/jquery-1.9.1.js",
+			"scripts/tipped.js",
 			"scripts/jquery-highlight1.js",
 			"scripts/contentscript.js",
-			"scripts/imagesloaded.pkgd.min.js",
-			"scripts/tipped.js"
+			"scripts/imagesloaded.pkgd.min.js"
 		  ],
 		  "run_at": "document_end",
 		  "all_frames": false
