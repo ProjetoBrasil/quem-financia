@@ -1,7 +1,7 @@
 Quem Financia - Projeto Brasil
 =============
 
-Extensão do Google Chrome para mostrar quem financia os parlamentares. Obtenha em: https://chrome.google.com/webstore/detail/quem-financia/mfopppibeojjeoacciebalkehcinccdp?hl=pt-BR
+Extensão do Google Chrome para mostrar quem financia os parlamentares. Link para instalação [aqui]( https://chrome.google.com/webstore/detail/quem-financia/mfopppibeojjeoacciebalkehcinccdp?hl=pt-BR).
 
 
 ### Reportando erros ou sugestões de mudanças
